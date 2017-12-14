@@ -1,0 +1,66 @@
+[alias]
+	pl = pull
+	ps = push
+	co = checkout
+	br = branch
+	rb = rebase
+	cm = commit -m
+	cma = commit -am
+	a = add
+	cp = cherry-pick
+	rs = reset
+	ft = fetch
+	ss = status -s
+	st = status
+	if = clean -ndX #ignored files
+	rbc = rebase --continue
+	rbs = rebase --skip
+	rbr = rebase --reset
+	rl = reflog
+	mff = merge --no-ff
+	ic = update-index --assume-unchaged #tells git to ignore changes to a file that is tracked
+	lg = log --graph --pretty=format:'%C(green)%h%Creset:%C(bold yellow)<%an>%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) ' --abbrev-commit --date=relative
+	lg2 = log --graph --pretty=format:'%C(green)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold yellow)<%an>%Creset' --abbrev-commit --date=relative
+	lga = !git lg --all
+	who = shortlog -n -s --no-merges --all
+	dt = difftool --no-prompt
+	dtv = difftool --no-prompt --tool=fugitive
+	mt = mergetool --no-prompt
+	mtv = mergetool --no-prompt --tool=fugitive
+	greph = !sh -c 'git grep -I $1 $(git rev-list --all)'
+	lost = !sh -c \"'git fsck --lost-found' | awk '/dangling commit/ {print $3}' | git show --format='SHA1: %C(yellow)%h%Creset %f %C(bold blue)<%an>%Creset' --stdin | awk '/SHA1/ {sub(\"SHA1: \", \"\") ; print}'\"
+	setupName = config --global user.name
+	setupMail = config --global user.email
+[core]
+	autocrlf = false
+	#editor = "'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"
+	editor = 'C:/Program Files/Sublime Text 3/sublime_text.exe'
+[diff]
+	tool = p4merge
+	guitool = p4merge
+[merge]
+	tool = p4merge
+[mergetool "p4merge"]		
+	cmd = \"C:/Program Files/Git/mingw64/libexec/git-core/mergetools/p4merge.exe\" \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+	path = C:/Program Files/Git/mingw64/libexec/git-core/mergetools/p4merge.exe
+[push]
+	default = simple
+[branch]
+	autosetuprebase = always
+[push]
+	default = matching
+[color]
+ 	ui = auto
+[color "branch"]
+ 	current = red normal bold
+ 	local = red normal bold
+ 	remote = green normal bold
+[color "diff"]
+ 	meta = yellow bold normal bold
+ 	frag = magenta bold normal bold
+ 	old = red bold normal bold
+ 	new = green bold normal bold
+[color "status"]
+ 	added = red normal bold
+ 	changed = green normal bold
+ 	untracked = red normal bold
