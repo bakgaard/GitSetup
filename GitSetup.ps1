@@ -206,6 +206,8 @@ function DownloadGitconfigContent2
 {
 	#Colors for PowerShell
 	$text = @"
+Start-SshAgent -q #This prompt you for password on start of PowerShell and remembers it for all origin interactions
+
 `$Global:GitPromptSettings.BeforeIndexForegroundColor        = [ConsoleColor]::Green
 `$Global:GitPromptSettings.IndexForegroundColor              = [ConsoleColor]::Green
 `$Global:GitPromptSettings.WorkingForegroundColor            = [ConsoleColor]::Red
@@ -252,6 +254,6 @@ GetSSHKey
 .$PROFILE
 
 Write-Host "To get your ssh-key in your paste-bin, write the follwing command:"
-Write-Host "Get-Content ~/.ssh/id_ras.pub | clip "
+Write-Host "Get-Content ~/.ssh/id_rsa.pub | clip "
 
 cd $global:installationFolder
