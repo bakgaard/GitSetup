@@ -31,10 +31,11 @@
 	lost = !sh -c \"'git fsck --lost-found' | awk '/dangling commit/ {print $3}' | git show --format='SHA1: %C(yellow)%h%Creset %f %C(bold blue)<%an>%Creset' --stdin | awk '/SHA1/ {sub(\"SHA1: \", \"\") ; print}'\"
 	setupName = config --global user.name
 	setupMail = config --global user.email
+	sublime = config --global core.editor \"'C:/Program Files/Sublime Text 3/sublime_text.exe' -n -w\"
+	notepad = config --global core.editor \"'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin\"
 [core]
 	autocrlf = false
-	#editor = "'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"
-	editor = 'C:/Program Files/Sublime Text 3/sublime_text.exe'
+	editor = 'C:/Program Files/Sublime Text 3/sublime_text.exe' -n -w
 [diff]
 	tool = p4merge
 	guitool = p4merge

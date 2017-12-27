@@ -44,6 +44,6 @@ Running the GitSetup.ps1-file will setup the following for you
 
 ## Optional
 
-* If your favorite editor is not Sublime Text 3, you can open your ``~/.gitconfig``, go to the section "core", and use another path for the ``editor``.
-  An example for use of Notepad++ can be seen on line 36
+* Change editor when making ``--amend`` messages using the alias ``git sublime`` and ``git notepad``.
+  Make sure the path in ``~/.gitconfig``'s line 34 and 35 are correct, or add your own favorite editor to it.
 
