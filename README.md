@@ -39,8 +39,8 @@ Running the GitSetup.ps1-file will setup the following for you
 	* Can be accomplished by typing 'Powershell' in the folder path in the top of the explorer
 
 * Run the following command including the quotation marks, but with your name and email:
-
-	 ``./GitSetup "Your name" "Your email"``
+		``Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm -Force``
+		``./GitSetup "Your name" "Your email"``
 
 
 

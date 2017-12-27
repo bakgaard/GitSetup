@@ -135,17 +135,17 @@ function SetupMergeTool
 {
 	try
 	{
-	    # Extract it
-	    Write-Host "Installing P4Merge as mergetool"
-	    $shell = new-object -com shell.application
-	    $zip = $shell.NameSpace("$pwd\$global:P4MergeFile")
-	    foreach($item in $zip.items())
-	    {
-		    $shell.Namespace($mergePath).copyhere($item, 0x14)
-	    }
+			# Extract it
+			Write-Host "Installing P4Merge as mergetool"
+			$shell = new-object -com shell.application
+			$zip = $shell.NameSpace("$pwd\$global:P4MergeFile")
+			foreach($item in $zip.items())
+			{
+				$shell.Namespace($mergePath).copyhere($item, 0x14)
+			}
 	}
 	catch	
-    {
+		{
 		Write-Host "Are you sure you are in Admin mode?" -ForegroundColor Green
 	}
 }
@@ -175,27 +175,34 @@ function SetupProxy
 	}
 }
 
-function SetupPostGit
+function SetupPoshGit
 {
 	try 
-    {
+	{
 		# Download and install posh-git
-		Write-Host "Download and install post-git"
-        $pathToInstall = Split-Path -Path $mergePath -Parent
+		Write-Host "Download and install post-git..."
+		$pathToInstall = Split-Path -Path $mergePath -Parent
 
-        $currentFolder = $pwd
+		$currentFolder = $pwd
 
-        cd $pathToInstall
+		cd $pathToInstall
 
-        If((Test-Path posh-git) -eq $false)
-        {
-           Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm
-
-	        git clone -q https://github.com/dahlbyk/posh-git.git
-	        cd posh-git
-            ./install.ps1	
-        }
-        cd $currentFolder
+		# Already exits?
+		If((Test-Path posh-git) -eq $true)
+		{
+			Write-Host "Already installed - updating..."
+			cd .\posh-git\
+			git pull -q
+		} 
+		# First time installation
+		Else
+		{
+			git clone https://github.com/dahlbyk/posh-git.git -q
+			cd .\posh-git\
+		}
+		.\install.ps1	
+		
+		cd $currentFolder #back out
 	}
 	catch {
 		Write-Host "While downloading and installing posh-git, something went wrong!" -Foreground Red
@@ -223,7 +230,7 @@ function GetSSHKey
 	$keyPath = (Get-Item "Env:userprofile").Value + "/.ssh/id_rsa.pub"
 	Get-Content $keyPath | clip	
 
-    Write-Host "" #Empty line
+	Write-Host "" #Empty line
 	Write-Host "Your SSH-key is in you paste-bin. Use 'Ctrl+V' to paste it into the browser." -Foreground Green
 
 	Write-Host "Go register on https://github.com/settings/ssh if you use that :)" -Foreground Green
@@ -240,7 +247,7 @@ DownloadGitconfigContent
 SetupSSH
 SetupMergeTool
 SetupProxy
-SetupPostGit
+SetupPoshGit
 
 # Go to the home folder
 cd $env:userprofile
@@ -253,7 +260,9 @@ GetSSHKey
 
 .$PROFILE
 
-Write-Host "To get your ssh-key in your paste-bin, write the follwing command:"
-Write-Host "Get-Content ~/.ssh/id_rsa.pub | clip "
+Write-Host "" #Empty line
+Write-Host "If you missed the paste-bin's SSH-key, get it by writing the follwing command:" 
+Write-Host "cat ~/.ssh/id_rsa.pub | clip"
+Write-Host "" #Empty line
 
 cd $global:installationFolder
