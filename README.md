@@ -32,13 +32,10 @@ This repository will setup Git for shell warriors. It includes setup of Posh-git
 
 ## Step 2 - Running the script:
 
-Running the GitSetup.ps1-file will setup the following for you
+Run the ``GitSetup.ps1``-file from a Powershell window in Administrator mode to install.
 
-(While in Administrator mode)
-* ``cd`` to this folder
-	* Can be accomplished by typing 'Powershell' in the folder path in the top of the explorer
-
-* Run the following command including the quotation marks, but with your name and email:
+* ``cd`` to the folder.
+* Run the following commands including the quotation marks, but with your name and email:
 	```powershell
 	Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm -Force
 	./GitSetup "Your name" "Your email"
@@ -49,5 +46,6 @@ Running the GitSetup.ps1-file will setup the following for you
 ## Optional
 
 * Change editor when making ``--amend`` messages using the alias ``git sublime`` and ``git notepad``.
+
   Make sure the path in ``~/.gitconfig``'s line 34 and 35 are correct, or add your own favorite editor to it.
 
