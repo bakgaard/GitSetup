@@ -3,7 +3,7 @@ This repository will setup Git for shell warriors. It includes setup of Posh-git
 
 * Add a PowerShell profile, if you do not have one. This gives you the shortcut ``g`` for ``git``.
 * Tell PowerShell where Git is located, so the commands can be used
-* Override the ``~/.gitconfig`` file with a whole lot of new aliases, and set it up to default use P4Merge. Open ``~/.gitconfig`` in your favorite editor (note MS Notepad) to see all of these.
+* Override the ``~/.gitconfig`` file with a whole lot of new aliases, and set it up to default use P4Merge. Open ``~/.gitconfig`` in your favorite editor (not MS Notepad) to see all of these.
 * Install a light version of P4Merge 2015.2
 * Install [Posh-git](https://github.com/dahlbyk/posh-git) for better overview of Git in PowerShell
 * Setup a proxy for Git, extracting the data from Internet Explorer (should there be any)
