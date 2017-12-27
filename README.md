@@ -17,6 +17,8 @@ This repository will setup Git for shell warriors. It includes setup of Posh-git
 	* Check the following under 'Selected Components', and uncheck everything else unless needed
 		* Git LFS
 		* Use a TrueType font in all console windows
+	* Select your prefered option of the three editors
+		* **It will be overridden when this tutorial is done**
 	* Select the following radio button under 'Adjusting your PATH environment'
 		* Use Git from the Windows Command Prompt
 	* Select the following radio button under 'HTTPS transport backend'
