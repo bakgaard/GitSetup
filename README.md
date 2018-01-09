@@ -32,12 +32,13 @@ This repository will setup Git for shell warriors. It includes setup of Posh-git
 
 ## Step 2 - Running the script:
 
-Run the ``GitSetup.ps1``-file from a Powershell window in Administrator mode to install.
+Open PowerShell in Administrator mode:
 
 * ``cd`` to the folder.
 * Run the following commands including the quotation marks, but with your name and email:
 	```powershell
 	Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm -Force
+
 	./GitSetup "Your name" "Your email"
 	```
 
@@ -49,3 +50,25 @@ Run the ``GitSetup.ps1``-file from a Powershell window in Administrator mode to 
 
   Make sure the path in ``~/.gitconfig``'s line 34 and 35 are correct, or add your own favorite editor to it.
 
+
+
+
+## Errors
+
+This is not perfect, so you might encounter an error or two:
+
+
+### Can't run .ps1-script
+
+This happens, and I can't really find the root cause, but I have a work-around:
+
+* Open ``GitSetup.ps1``
+* Copy everything to a new document, and save it as ``setup.ps1``
+* Run ``setup.ps1 "Your name" "Your email"``
+
+
+
+### Mergetool error
+
+If you encounter a merge tool error, it might be because you are missing ``msvcr110.dll``.
+This will install the [Visual C++ Redistributable for Visual Studio 2012 Update 4](https://www.microsoft.com/en-us/download/confirmation.aspx?id=30679).
