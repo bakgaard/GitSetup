@@ -143,9 +143,14 @@ function SetupMergeTool
 			{
 				$shell.Namespace($mergePath).copyhere($item, 0x14)
 			}
+
+			# Insert start menu link
+			$objShell = New-Object -ComObject ("WScript.Shell")
+			$objShortCut = $objShell.CreateShortcut($env:ALLUSERSPROFILE + "\Microsoft\Windows\Start Menu\Programs" + "\P4Merge.lnk")
+			$objShortCut.TargetPath = "C:\Program Files\Git\mingw64\libexec\git-core\mergetools\p4merge.exe"
+			$objShortCut.Save()
 	}
-	catch	
-		{
+	catch	{
 		Write-Host "Are you sure you are in Admin mode?" -ForegroundColor Green
 	}
 }
