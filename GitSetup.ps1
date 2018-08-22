@@ -218,11 +218,10 @@ function DownloadGitconfigContent2
 {
 	#Colors for PowerShell
 	$text = @"
-Start-SshAgent -q #This prompt you for password on start of PowerShell and remembers it for all origin interactions
 
-`$Global:GitPromptSettings.BeforeIndex.ForegroundColor        = [ConsoleColor]::Green
-`$Global:GitPromptSettings.IndexColor.ForegroundColor              = [ConsoleColor]::Green
-`$Global:GitPromptSettings.WorkingColor.ForegroundColor            = [ConsoleColor]::Red
+`$Global:GitPromptSettings.BeforeIndex.ForegroundColor              = [ConsoleColor]::Green
+`$Global:GitPromptSettings.IndexColor.ForegroundColor               = [ConsoleColor]::Green
+`$Global:GitPromptSettings.WorkingColor.ForegroundColor             = [ConsoleColor]::Red
 `$Global:GitPromptSettings.LocalWorkingStatusSymbol.ForegroundColor = [ConsoleColor]::Red
 `$Global:GitPromptSettings.LocalDefaultStatusSymbol.ForegroundColor = [ConsoleColor]::Red
 "@

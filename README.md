@@ -34,13 +34,19 @@ This repository will setup Git for shell warriors. It includes setup of Posh-git
 
 Open PowerShell in Administrator mode:
 
-* ``cd`` to the folder.
-* Run the following commands including the quotation marks, but with your name and email:
-	```powershell
-	Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm -Force
+* Download this repository:
 
-	./GitSetup "Your name" "Your email"
-	```
+  ``Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://github.com/bakgaard/GitSetup/archive/master.zip'))``
+
+* ``cd`` into the folder.
+
+* Run the following commands including the quotation marks, but with your name and email:
+
+  ```powershell
+  Set-ExecutionPolicy RemoteSigned -Scope Process -Confirm -Force
+
+  ./GitSetup "Your name" "Your email"
+  ```
 
 
 
