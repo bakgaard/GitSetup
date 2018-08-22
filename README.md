@@ -36,25 +36,25 @@ Open PowerShell in Administrator mode:
 
 * Replace the first two lines with your own data:
 
-  ```powershell
-  $YourName = "Anon McAnon" #Replace this value
-  $YourEmail = "anon@mail.com" #Replace this value
-  $Folderpath = ".\GitSetup" #Current location in a folder called "GitSetup"
+```powershell
+$YourName = "Anon McAnon" #Replace this value
+$YourEmail = "anon@mail.com" #Replace this value
+$Folderpath = ".\GitSetup" #Current location in a folder called "GitSetup"
 
-  # Download data fromt he Git repository
-  [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-  Import-Module BitsTransfer
-  Start-BitsTransfer -Source https://github.com/bakgaard/GitSetup/archive/master.zip -Destination "$Folderpath.zip"
+# Download data from he Git repository
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+Import-Module BitsTransfer
+Start-BitsTransfer -Source https://github.com/bakgaard/GitSetup/archive/master.zip -Destination "$Folderpath.zip"
 
-  # Unzip the files
-  Expand-Archive "$Folderpath.zip" -DestinationPath $Folderpath
+# Unzip the files
+Expand-Archive "$Folderpath.zip" -DestinationPath $Folderpath
 
-  cd "$Folderpath/GitSetup-master"
+cd "$Folderpath/GitSetup-master"
 
-  # Setup PowerShell for Git
-  Set-ExecutionPolicy RemoteSigned -Scope Process -Confirm -Force
-  ./GitSetup $YourName $YourEmail
-  ```
+# Setup PowerShell for Git
+Set-ExecutionPolicy RemoteSigned -Scope Process -Confirm -Force
+./GitSetup $YourName $YourEmail
+```
 
 
 
