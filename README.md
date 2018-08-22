@@ -36,7 +36,7 @@ Open PowerShell in Administrator mode:
 
 * Download this repository:
 
-  ```bash
+  ```powershell
   Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://github.com/bakgaard/GitSetup/archive/master.zip'))
   ```
 
