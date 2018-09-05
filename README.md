@@ -32,7 +32,7 @@ This repository will setup Git for shell warriors. It includes setup of Posh-git
 
 ## Step 2 - Running the script:
 
-Open PowerShell in Administrator mode:
+Open PowerShell in **Administrator mode**:
 
 * Replace the first two lines with your own data:
 
@@ -47,7 +47,7 @@ Import-Module BitsTransfer
 Start-BitsTransfer -Source https://github.com/bakgaard/GitSetup/archive/master.zip -Destination "$Folderpath.zip"
 
 # Unzip the files
-Expand-Archive "$Folderpath.zip" -DestinationPath $Folderpath
+Expand-Archive "$Folderpath.zip" -DestinationPath $Folderpath -Force
 
 cd "$Folderpath/GitSetup-master"
 
