@@ -85,4 +85,8 @@ This happens, and I can't really find the root cause, but I have a work-around:
 ### Mergetool error
 
 If you encounter a merge tool error, it might be because you are missing ``msvcr110.dll``.
-This will install the [Visual C++ Redistributable for Visual Studio 2012 Update 4](https://www.microsoft.com/en-us/download/confirmation.aspx?id=30679).
+Download and install the [Visual C++ Redistributable for Visual Studio 2012 Update 4](https://www.microsoft.com/en-us/download/confirmation.aspx?id=30679), or use Chocolatey to do it:
+
+```powershell
+choco install vcredist2012
+```
