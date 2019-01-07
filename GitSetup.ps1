@@ -33,6 +33,8 @@ function CheckPowerShellVersion
 		Write-Host "You are not running PowerShell version 5+, and cannot make a full installation (Post-git requires it)." -Foreground Red
 		Write-Host "To upgrade, you can install Chocolatey through the following command, followed by a restart:" -Foreground Cyan
 		Write-Host "Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" -Foreground Gray
+		Write-Host "After that, run the following code to install the new verison of PowerShell:"
+		Write-Host "choco install powershell -y" -Foreground Gray
 		Write-Error "You are not running PowerShell version 5+! Please upgrade."
 	}
 }
