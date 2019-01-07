@@ -6,6 +6,8 @@ param(
 	[Parameter(Mandatory=$true)] [string]$mail
 )
 
+$ErrorActionPreference = "Stop"
+
 $global:x86 = $true
 $global:PowerProfile = $PROFILE
 $global:ConfigFile = ".gitconfig"
@@ -14,11 +16,21 @@ $global:gitPath = "${env:ProgramFiles(x86)}" + "\Git"
 $global:mergePath = $gitPath + "\libexec\git-core\mergetools"
 $global:installationFolder = $pwd;
 
+function CheckPowerShellVersion
+{
+	if($PSVersionTable.PSVersion.Major -ne 5) {
+		Write-Host "You are not running PowerShell version 5+, and cannot make a full installation (Post-git requires it)." -Foreground Red
+		Write-Host "To upgrade, you can install Chocolatey through the following command, followed by a restart:" -Foreground Cyan
+		Write-Host "Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" -Foreground Gray
+		Write-Error "You are not running PowerShell version 5+! Please upgrade."
+	}
+}
+
 function CheckIfMsysIsInstallad
 {
 	# Check if MSysGit has been installed
 	$ValidPath = Test-Path $gitPath
-	If($ValidPath -eq $false)
+	if($ValidPath -eq $false)
 	{
 		$global:x86 = $false
 		$global:gitPath = "${env:ProgramFiles}" + "\Git"
@@ -27,7 +39,7 @@ function CheckIfMsysIsInstallad
 
 	$ValidPath = Test-Path $global:gitPath
 	# It has not:
-	If ($ValidPath -eq $false) 
+	if ($ValidPath -eq $false) 
 	{
 		Write-Host "You have not install MSysGit yet. Please do so." -Foreground Green
 		Write-Host "Please hit a key to download it..." -Foreground Green
@@ -68,6 +80,9 @@ function DownloadGit
 #Alias
 Set-Alias g git
 
+Import-Module posh-sshell
+Start-SshAgent -Quiet
+
 "@
 
 		$text | out-file $global:PowerProfile
@@ -82,6 +97,9 @@ Set-Alias g git
  
 #Alias
 Set-Alias g git 
+
+Import-Module posh-sshell
+Start-SshAgent -Quiet
 
 "@
 
@@ -135,20 +153,20 @@ function SetupMergeTool
 {
 	try
 	{
-			# Extract it
-			Write-Host "Installing P4Merge as mergetool"
-			$shell = new-object -com shell.application
-			$zip = $shell.NameSpace("$pwd\$global:P4MergeFile")
-			foreach($item in $zip.items())
-			{
-				$shell.Namespace($mergePath).copyhere($item, 0x14)
-			}
+		# Extract it
+		Write-Host "Installing P4Merge as mergetool"
+		$shell = new-object -com shell.application
+		$zip = $shell.NameSpace("$pwd\$global:P4MergeFile")
+		foreach($item in $zip.items())
+		{
+			$shell.Namespace($mergePath).copyhere($item, 0x14)
+		}
 
-			# Insert start menu link
-			$objShell = New-Object -ComObject ("WScript.Shell")
-			$objShortCut = $objShell.CreateShortcut($env:ALLUSERSPROFILE + "\Microsoft\Windows\Start Menu\Programs" + "\P4Merge.lnk")
-			$objShortCut.TargetPath = "C:\Program Files\Git\mingw64\libexec\git-core\mergetools\p4merge.exe"
-			$objShortCut.Save()
+		# Insert start menu link
+		$objShell = New-Object -ComObject ("WScript.Shell")
+		$objShortCut = $objShell.CreateShortcut($env:ALLUSERSPROFILE + "\Microsoft\Windows\Start Menu\Programs" + "\P4Merge.lnk")
+		$objShortCut.TargetPath = "C:\Program Files\Git\mingw64\libexec\git-core\mergetools\p4merge.exe"
+		$objShortCut.Save()
 	}
 	catch	{
 		Write-Host "Are you sure you are in Admin mode?" -ForegroundColor Green
@@ -193,14 +211,14 @@ function SetupPoshGit
 		cd $pathToInstall
 
 		# Already exits?
-		If((Test-Path posh-git) -eq $true)
+		if((Test-Path posh-git) -eq $true)
 		{
 			Write-Host "Already installed - updating..."
 			cd .\posh-git\
 			git pull -q
 		} 
 		# First time installation
-		Else
+		else
 		{
 			git clone https://github.com/dahlbyk/posh-git.git -q
 			cd .\posh-git\
@@ -208,6 +226,9 @@ function SetupPoshGit
 		.\install.ps1	
 		
 		cd $currentFolder #back out
+
+		Write-Host "Install posh-sshell"
+		PowerShellGet\Install-Module posh-sshell -Scope CurrentUser -Force
 	}
 	catch {
 		Write-Host "While downloading and installing posh-git, something went wrong!" -Foreground Red
@@ -241,6 +262,7 @@ function GetSSHKey
 	Write-Host "Go register on https://github.com/settings/ssh if you use that :)" -Foreground Green
 }
 
+CheckPowerShellVersion
 CheckIfMsysIsInstallad
 CreateProfile
 DownloadGit
