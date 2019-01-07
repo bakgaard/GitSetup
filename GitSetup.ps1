@@ -16,6 +16,17 @@ $global:gitPath = "${env:ProgramFiles(x86)}" + "\Git"
 $global:mergePath = $gitPath + "\libexec\git-core\mergetools"
 $global:installationFolder = $pwd;
 
+function CheckAdminMode
+{
+	$IsInAdminMode = ([Security.Principal.WindowsPrincipal] `
+	[Security.Principal.WindowsIdentity]::GetCurrent() `
+	).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+
+	if($IsInAdminMode -eq $False) {
+		Write-Error "You are not in admin mode! Please switch to run this installtion script."
+	}
+}
+
 function CheckPowerShellVersion
 {
 	if($PSVersionTable.PSVersion.Major -ne 5) {
@@ -82,7 +93,6 @@ Set-Alias g git
 
 Import-Module posh-sshell
 Start-SshAgent -Quiet
-
 "@
 
 		$text | out-file $global:PowerProfile
@@ -100,7 +110,6 @@ Set-Alias g git
 
 Import-Module posh-sshell
 Start-SshAgent -Quiet
-
 "@
 
 		$text | out-file $global:PowerProfile
@@ -262,6 +271,7 @@ function GetSSHKey
 	Write-Host "Go register on https://github.com/settings/ssh if you use that :)" -Foreground Green
 }
 
+CheckAdminMode
 CheckPowerShellVersion
 CheckIfMsysIsInstallad
 CreateProfile
