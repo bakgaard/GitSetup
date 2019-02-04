@@ -37,6 +37,9 @@ function CheckPowerShellVersion
 		Write-Host "choco install powershell -y" -Foreground Gray
 		Write-Error "You are not running PowerShell version 5+! Please upgrade."
 	}
+
+	Install-PackageProvider NuGet -Force
+	Import-PackageProvider NuGet -Force
 }
 
 function CheckIfMsysIsInstallad
@@ -108,10 +111,7 @@ Start-SshAgent -Quiet
 `$env:home = `$env:userprofile
  
 #Alias
-Set-Alias g git 
-
-Import-Module posh-sshell
-Start-SshAgent -Quiet
+Set-Alias g git
 "@
 
 		$text | out-file $global:PowerProfile
@@ -238,6 +238,15 @@ function SetupPoshGit
 		
 		cd $currentFolder #back out
 
+		# Run when starting PowerShell
+				$text = @"
+
+Import-Module posh-sshell
+Start-SshAgent -Quiet
+"@
+
+		$text | out-file $global:PowerProfile -append
+
 		Write-Host "Install posh-sshell"
 		PowerShellGet\Install-Module posh-sshell -Scope CurrentUser -Force
 	}
@@ -251,11 +260,11 @@ function DownloadGitconfigContent2
 	#Colors for PowerShell
 	$text = @"
 
-`$Global:GitPromptSettings.BeforeIndex.ForegroundColor              = [ConsoleColor]::Green
-`$Global:GitPromptSettings.IndexColor.ForegroundColor               = [ConsoleColor]::Green
-`$Global:GitPromptSettings.WorkingColor.ForegroundColor             = [ConsoleColor]::Red
-`$Global:GitPromptSettings.LocalWorkingStatusSymbol.ForegroundColor = [ConsoleColor]::Red
-`$Global:GitPromptSettings.LocalDefaultStatusSymbol.ForegroundColor = [ConsoleColor]::Red
+`$Global:GitPromptSettings.BeforeIndexForegroundColor        = [ConsoleColor]::Green
+`$Global:GitPromptSettings.IndexForegroundColor              = [ConsoleColor]::Green
+`$Global:GitPromptSettings.WorkingForegroundColor            = [ConsoleColor]::Red
+`$Global:GitPromptSettings.LocalWorkingStatusForegroundColor = [ConsoleColor]::Red
+`$Global:GitPromptSettings.LocalDefaultStatusForegroundColor = [ConsoleColor]::Red
 "@
 
 	$text | out-file $global:PowerProfile -append
