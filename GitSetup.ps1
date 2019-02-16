@@ -260,11 +260,11 @@ function DownloadGitconfigContent2
 	#Colors for PowerShell
 	$text = @"
 
-`$Global:GitPromptSettings.BeforeIndexForegroundColor        = [ConsoleColor]::Green
-`$Global:GitPromptSettings.IndexForegroundColor              = [ConsoleColor]::Green
-`$Global:GitPromptSettings.WorkingForegroundColor            = [ConsoleColor]::Red
-`$Global:GitPromptSettings.LocalWorkingStatusForegroundColor = [ConsoleColor]::Red
-`$Global:GitPromptSettings.LocalDefaultStatusForegroundColor = [ConsoleColor]::Red
+`$Global:GitPromptSettings.BeforeIndex.ForegroundColor              = [ConsoleColor]::Green
+`$Global:GitPromptSettings.IndexColor.ForegroundColor               = [ConsoleColor]::Green
+`$Global:GitPromptSettings.WorkingColor.ForegroundColor             = [ConsoleColor]::Red
+`$Global:GitPromptSettings.LocalWorkingStatusSymbol.ForegroundColor = [ConsoleColor]::Red
+`$Global:GitPromptSettings.LocalDefaultStatusSymbol.ForegroundColor = [ConsoleColor]::Red
 "@
 
 	$text | out-file $global:PowerProfile -append
