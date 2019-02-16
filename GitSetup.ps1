@@ -111,7 +111,8 @@ Start-SshAgent -Quiet
 `$env:home = `$env:userprofile
  
 #Alias
-Set-Alias g git
+Set-Alias g git        # Use Git commands but just typing 'g'
+Set-Alias ex explorer  # Open a File Explorer with 'ex .'
 "@
 
 		$text | out-file $global:PowerProfile
@@ -265,9 +266,14 @@ function DownloadGitconfigContent2
 `$Global:GitPromptSettings.WorkingColor.ForegroundColor             = [ConsoleColor]::Red
 `$Global:GitPromptSettings.LocalWorkingStatusSymbol.ForegroundColor = [ConsoleColor]::Red
 `$Global:GitPromptSettings.LocalDefaultStatusSymbol.ForegroundColor = [ConsoleColor]::Red
+
+# Set start location
+Set-Location `$env:home
 "@
 
 	$text | out-file $global:PowerProfile -append
+
+
 }
 
 function GetSSHKey
