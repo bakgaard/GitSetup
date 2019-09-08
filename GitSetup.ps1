@@ -94,10 +94,11 @@ function DownloadGit
 `$env:home = `$env:userprofile
 
 #Alias
-Set-Alias g git
+Set-Alias g git        # Use Git commands but just typing 'g'
+Set-Alias ex explorer  # Open a File Explorer with 'ex .'
 
 Import-Module posh-sshell
-Start-SshAgent -Quiet
+Start-Service ssh-agent
 "@
 
 		$text | out-file $global:PowerProfile
@@ -279,7 +280,7 @@ Set-Location `$env:home
 function GetSSHKey
 {
 	# Copy your ssh-key
-	$keyPath = (Get-Item "Env:userprofile").Value + "/.ssh/id_rsa.pub"
+	$keyPath = (Get-Item "Env:userprofile").Value + "\.ssh\id_rsa.pub"
 	Get-Content $keyPath | clip	
 
 	Write-Host "" #Empty line
