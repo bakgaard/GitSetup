@@ -243,7 +243,11 @@ function SetupPoshGit
 		# Run when starting PowerShell
 				$text = @"
 
+# Load Posh-git
 Import-Module posh-sshell
+
+# Load SSH-agent with password
+ssh-add $env:home\.ssh\id_rsa
 Start-SshAgent -Quiet
 "@
 
@@ -269,7 +273,7 @@ function DownloadGitconfigContent2
 `$Global:GitPromptSettings.LocalDefaultStatusSymbol.ForegroundColor = [ConsoleColor]::Red
 
 # Set start location
-Set-Location `$env:home
+#Set-Location `$env:home
 "@
 
 	$text | out-file $global:PowerProfile -append

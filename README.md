@@ -17,7 +17,7 @@ This repository will setup Git for shell warriors. It includes setup of Posh-git
 	* Check the following under 'Selected Components', and uncheck everything else unless needed
 		* Git LFS
 		* Use a TrueType font in all console windows
-	* Select your prefered option of the three editors
+	* Select your preferred option of the three editors
 		* **It will be overridden when this tutorial is done**
 	* Select the following radio button under 'Adjusting your PATH environment'
 		* Use Git from the Windows Command Prompt
@@ -57,6 +57,16 @@ Set-ExecutionPolicy RemoteSigned -Scope Process -Confirm -Force
 ```
 
 
+### Step 3 - Mergetool error
+
+You will most likely encounter a merge tool error, which might be because you are missing ``msvcr110.dll``.
+Download and install the [Visual C++ Redistributable for Visual Studio 2012 Update 4](https://www.microsoft.com/en-us/download/confirmation.aspx?id=30679), or use Chocolatey to do it:
+
+```powershell
+choco install vcredist2012
+```
+
+
 
 ## Optional
 
@@ -81,12 +91,16 @@ This happens, and I can't really find the root cause, but I have a work-around:
 * Run ``setup.ps1 "Your name" "Your email"``
 
 
+### It ask if I have installed Sublime Text 3
 
-### Mergetool error
+When installing Git, it will ask you which editor you prefer, and save that in your ``~/.gitconfig``.
+This is overwritten in Step 2, so you have to do something to switch to, for example, Notepad++.
 
-If you encounter a merge tool error, it might be because you are missing ``msvcr110.dll``.
-Download and install the [Visual C++ Redistributable for Visual Studio 2012 Update 4](https://www.microsoft.com/en-us/download/confirmation.aspx?id=30679), or use Chocolatey to do it:
-
+I have implemented an alias to switch to Notepad++ which you can run as so:
 ```powershell
-choco install vcredist2012
+git notepad #Will switch to Notepad++ (x64 folder)
+git sublime #Will switch to Sublime Text 3
 ```
+
+If you use something else, have a look inside the ``~/.gitconfig`` file, and go to the ``[core]`` section.
+Here you can specify which editor to start up in the ``editor`` line.
