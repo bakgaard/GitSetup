@@ -48,8 +48,6 @@
 	default = simple
 [branch]
 	autosetuprebase = always
-[push]
-	default = matching
 [color]
  	ui = auto
 [color "branch"]
