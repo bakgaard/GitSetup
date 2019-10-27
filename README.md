@@ -59,7 +59,7 @@ Set-ExecutionPolicy RemoteSigned -Scope Process -Confirm -Force
 # Clean up .zip-file and extracted folder
 cd "../.."
 rm "$Folderpath.zip"
-rmdir $Folderpath -Recurse
+rmdir $Folderpath -Recurse -Force
 ```
 
 
