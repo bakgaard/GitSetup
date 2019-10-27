@@ -1,13 +1,14 @@
 # GitSetup
-This repository will setup Git for shell warriors. It includes setup of Posh-git, P4Merge, and several shortcuts
+This repository will setup Git for shell warriors. 
+It includes setup of Posh-git, P4Merge, and several shortcuts.
 
 * Add a PowerShell profile, if you do not have one. This gives you the shortcut ``g`` for ``git``.
-* Tell PowerShell where Git is located, so the commands can be used
+* Tell PowerShell where Git is located, so the commands can be used.
 * Override the ``~/.gitconfig`` file with a whole lot of new aliases, and set it up to default use P4Merge. Open ``~/.gitconfig`` in your favorite editor to see all of these.
-* Install a light version of P4Merge 2015.2
-* Install [Posh-git](https://github.com/dahlbyk/posh-git) for better overview of Git in PowerShell
-* Setup a proxy for Git, extracting the data from Internet Explorer (should there be any)
-* Setup an SSH-key, which is located under ``~/.ssh/id_rsa.pub`` (use to authorize you with TFS/GitHub/BitBucket/TeamCity/Jenkins/GitLab/...)
+* Install a light version of P4Merge 2015.2.
+* Install [Posh-git](https://github.com/dahlbyk/posh-git) for better overview of Git in PowerShell.
+* Setup a proxy for Git, extracting the data from Internet Explorer (should there be any).
+* Setup an SSH-key, which is located under ``~/.ssh/id_rsa.pub`` (use to authorize you with TFS/GitHub/BitBucket/TeamCity/Jenkins/GitLab/...).
 
 
 ## Step 1 - Installing Git:
@@ -32,7 +33,7 @@ This repository will setup Git for shell warriors. It includes setup of Posh-git
 
 ## Step 2 - Running the script:
 
-Open PowerShell in **Administrator mode**:
+* Open PowerShell in **Administrator mode**:
 
 * Replace the first two lines with your own data:
 
@@ -54,6 +55,11 @@ cd "$Folderpath/GitSetup-master"
 # Setup PowerShell for Git
 Set-ExecutionPolicy RemoteSigned -Scope Process -Confirm -Force
 ./GitSetup $YourName $YourEmail
+
+# Clean up .zip-file and extracted folder
+cd "../.."
+rm "$Folderpath.zip"
+rmdir $Folderpath -Recurse
 ```
 
 
