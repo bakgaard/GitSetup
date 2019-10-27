@@ -218,9 +218,7 @@ function SetupPoshGit
 		# Download and install posh-git
 		Write-Host "Download and install post-git..."
 		$pathToInstall = Split-Path -Path $mergePath -Parent
-
 		$currentFolder = $pwd
-
 		cd $pathToInstall
 
 		# Already exits?
@@ -238,16 +236,15 @@ function SetupPoshGit
 		}
 		.\install.ps1	
 		
-		cd $currentFolder #back out
+		cd $currentFolder
 
 		# Run when starting PowerShell
-				$text = @"
+		$text = @"
 
 # Load Posh-git
 Import-Module posh-sshell
 
 # Load SSH-agent with password
-ssh-add $env:home\.ssh\id_rsa
 Start-SshAgent -Quiet
 "@
 
@@ -255,6 +252,9 @@ Start-SshAgent -Quiet
 
 		Write-Host "Install posh-sshell"
 		PowerShellGet\Install-Module posh-sshell -Scope CurrentUser -Force
+
+		# Due to a bug (https://github.com/PowerShell/Win32-OpenSSH/issues/1234), run this command:
+		sc.exe create sshd binPath=C:\Windows\System32\OpenSSH\ssh.exe
 	}
 	catch {
 		Write-Host "While downloading and installing posh-git, something went wrong!" -Foreground Red
@@ -266,11 +266,12 @@ function DownloadGitconfigContent2
 	#Colors for PowerShell
 	$text = @"
 
-`$Global:GitPromptSettings.BeforeIndex.ForegroundColor              = [ConsoleColor]::Green
-`$Global:GitPromptSettings.IndexColor.ForegroundColor               = [ConsoleColor]::Green
-`$Global:GitPromptSettings.WorkingColor.ForegroundColor             = [ConsoleColor]::Red
-`$Global:GitPromptSettings.LocalWorkingStatusSymbol.ForegroundColor = [ConsoleColor]::Red
-`$Global:GitPromptSettings.LocalDefaultStatusSymbol.ForegroundColor = [ConsoleColor]::Red
+#Set readable colors
+`$Global:GitPromptSettings.BeforeIndexForegroundColor        = [ConsoleColor]::Green
+`$Global:GitPromptSettings.IndexForegroundColor              = [ConsoleColor]::Green
+`$Global:GitPromptSettings.WorkingForegroundColor            = [ConsoleColor]::Red
+`$Global:GitPromptSettings.LocalWorkingStatusForegroundColor = [ConsoleColor]::Red
+`$Global:GitPromptSettings.LocalDefaultStatusForegroundColor = [ConsoleColor]::Red
 
 # Set start location
 #Set-Location `$env:home
