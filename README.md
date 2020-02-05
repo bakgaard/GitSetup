@@ -2,14 +2,6 @@
 This repository will setup Git for shell warriors. 
 It includes setup of Posh-git, P4Merge, and several shortcuts.
 
-* Add a PowerShell profile, if you do not have one. This gives you the shortcut ``g`` for ``git``.
-* Tell PowerShell where Git is located, so the commands can be used.
-* Override the ``~/.gitconfig`` file with a whole lot of new aliases, and set it up to default use P4Merge. Open ``~/.gitconfig`` in your favorite editor to see all of these.
-* Install a light version of P4Merge 2015.2.
-* Install [Posh-git](https://github.com/dahlbyk/posh-git) for better overview of Git in PowerShell.
-* Setup a proxy for Git, extracting the data from Internet Explorer (should there be any).
-* Setup an SSH-key, which is located under ``~/.ssh/id_rsa.pub`` (use to authorize you with TFS/GitHub/BitBucket/TeamCity/Jenkins/GitLab/...).
-
 
 ## Step 1 - Installing Git:
 * Download Git from the following link:
@@ -110,3 +102,37 @@ git sublime #Will switch to Sublime Text 3
 
 If you use something else, have a look inside the ``~/.gitconfig`` file, and go to the ``[core]`` section.
 Here you can specify which editor to start up in the ``editor`` line.
+
+
+## Git cheat sheet
+
+| **Simple operations** | **Full command** | **Alias version** |
+| :--- | :--- | :--- |
+| Add all files to be tracked | ``git add -A`` | ``g add -A`` |
+| Add a message to your commit | ``git commit -am "Your message"`` | ``g cma "Your message"`` |
+| Push your commits to the remote (Origin) | ``git push`` | ``g ps`` |
+| Push a newly created branch | ``git push -u origin BranchName`` | ``g ps -u origin BranchName`` |
+| Fetch (peak) the latest changes | ``git fetch`` | ``g ft`` |
+| Pull the latest changes | ``git pull`` | ``g pl`` |
+| Show the status as a one-liner | ``git status -s`` | ``g ss`` |
+| | |
+| **Branches and merges** | **Full command** | **Alias version** |
+| Create branch | ``git branch BranchName`` | ``g br BranchName`` |
+| Checkout / switch branch | ``git checkout ExistingBranchName`` | ``g co ExistingBranchName`` |
+| Create and checkout branch | ``git checkout -b NewBranchName`` | ``g co -b NewBranchName`` |
+| Merge another branch into current branch | ``git merge --no-ff OtherBranchName`` | ``g mff OtherBranchName`` |
+| Open the mergetool | ``git mergetool`` | ``g mt`` |
+| See branch tree | ``git log --graph --pretty=format...`` | ``g lg`` |
+| See remote branches | ``git branch -r`` | ``g br -r`` |
+| Clean up deleted branches | ``git fetch -p`` | ``g ft -p`` |
+| | |
+| **Undo operations** | **Full command** | **Alias version** |
+| --- | --- | --- |
+| Remove all pending changes | ``git checkout .`` | ``g co .`` |
+| Rollback everything to last commit | ``git reset --hard HEAD^`` |   |
+| Rollback everything to a specific commit | ``git reset --hard CommitId`` |   |
+| Hide all changes temporarily | ``git stash`` |   |
+| Apply hidden changes | ``git stash pop`` |   |
+| Remove all files in .gitignore | ``git clean -dfX`` | ``g if`` (short for "ignored files") |
+
+These are all defined in ``~/.gitconfig``, and can be changed in there.
