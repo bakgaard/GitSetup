@@ -106,7 +106,7 @@ Here you can specify which editor to start up in the ``editor`` line.
 
 ## Git cheat sheet
 
-| Simple operations | Full command | Alias version |
+| **Simple operations** | **Full command** | **Alias version** |
 | --- | --- | --- |
 | Add all files to be tracked | ``git add -A`` | ``g add -A`` |
 | Add a message to your commit | ``git commit -am "Your message"`` | ``g cma "Your message"`` |
@@ -125,9 +125,8 @@ Here you can specify which editor to start up in the ``editor`` line.
 | See branch tree | ``git log --graph --pretty=format...`` | ``g lg`` |
 | See remote branches | ``git branch -r`` | ``g br -r`` |
 | Clean up deleted branches | ``git fetch -p`` | ``g ft -p`` |
-
-
-| Undo operations | Full command | Alias version |
+| | |
+| **Undo operations** | **Full command** | **Alias version** |
 | --- | --- | --- |
 | Remove all pending changes | ``git checkout .`` | ``g co .`` |
 | Rollback everything to last commit | ``git reset --hard HEAD^`` |   |
