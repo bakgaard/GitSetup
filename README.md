@@ -116,10 +116,7 @@ Here you can specify which editor to start up in the ``editor`` line.
 | Pull the latest changes | ``git pull`` | ``g pl`` |
 | Show the status as a one-liner | ``git status -s`` | ``g ss`` |
 | | |
-
-
-| Branches and merges | Full command | Alias version |
-| --- | --- | --- |
+| **Branches and merges** | **Full command** | **Alias version** |
 | Create branch | ``git branch BranchName`` | ``g br BranchName`` |
 | Checkout / switch branch | ``git checkout ExistingBranchName`` | ``g co ExistingBranchName`` |
 | Create and checkout branch | ``git checkout -b NewBranchName`` | ``g co -b NewBranchName`` |
