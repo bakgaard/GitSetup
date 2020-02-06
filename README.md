@@ -127,7 +127,6 @@ Here you can specify which editor to start up in the ``editor`` line.
 | Clean up deleted branches | ``git fetch -p`` | ``g ft -p`` |
 | | |
 | **Undo operations** | **Full command** | **Alias version** |
-| --- | --- | --- |
 | Remove all pending changes | ``git checkout .`` | ``g co .`` |
 | Rollback everything to last commit | ``git reset --hard HEAD^`` |   |
 | Rollback everything to a specific commit | ``git reset --hard CommitId`` |   |
