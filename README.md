@@ -109,7 +109,7 @@ Here you can specify which editor to start up in the ``editor`` line.
 | **Simple operations** | **Full command** | **Alias version** |
 | :--- | :--- | :--- |
 | Add all files to be tracked | ``git add -A`` | ``g add -A`` |
-| Add a message to your commit | ``git commit -am "Your message"`` | ``g cma "Your message"`` |
+| Add all files and a message to your commit | ``git commit -am "Your message"`` | ``g cma "Your message"`` |
 | Push your commits to the remote (Origin) | ``git push`` | ``g ps`` |
 | Push a newly created branch | ``git push -u origin BranchName`` | ``g ps -u origin BranchName`` |
 | Fetch (peak) the latest changes | ``git fetch`` | ``g ft`` |
