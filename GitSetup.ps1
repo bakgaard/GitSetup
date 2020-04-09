@@ -29,7 +29,7 @@ function CheckAdminMode
 
 function CheckPowerShellVersion
 {
-	if($PSVersionTable.PSVersion.Major -ne 5) {
+	if($PSVersionTable.PSVersion.Major -lt 5) {
 		Write-Host "You are not running PowerShell version 5+, and cannot make a full installation (Post-git requires it)." -Foreground Red
 		Write-Host "To upgrade, you can install Chocolatey through the following command, followed by a restart:" -Foreground Cyan
 		Write-Host "Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" -Foreground Gray
