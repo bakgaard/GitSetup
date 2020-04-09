@@ -38,7 +38,7 @@ function CheckPowerShellVersion
 		Write-Error "You are not running PowerShell version 5+! Please upgrade."
 	}
 
-	Install-PackageProvider NuGet -Force
+	Get-PackageProvider -Name "NuGet" | Install-PackageProvider -Force
 	Import-PackageProvider NuGet -Force
 }
 
