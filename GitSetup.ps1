@@ -30,7 +30,7 @@ function CheckAdminMode
 function CheckPowerShellVersion
 {
 	if($PSVersionTable.PSVersion.Major -lt 5) {
-		Write-Host "You are not running PowerShell version 5+, and cannot make a full installation (Post-git requires it)." -Foreground Red
+		Write-Host "You are not running PowerShell version 5+, and cannot make a full installation (posh-git requires it)." -Foreground Red
 		Write-Host "To upgrade, you can install Chocolatey through the following command, followed by a restart:" -Foreground Cyan
 		Write-Host "Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" -Foreground Gray
 		Write-Host "After that, run the following code to install the new verison of PowerShell:"
@@ -217,26 +217,10 @@ function SetupPoshGit
 {
 	try 
 	{
-		# Download and install posh-git
-		Write-Host "Download and install post-git..."
-		$pathToInstall = Split-Path -Path $mergePath -Parent
+		# Download and install Posh-Git
+		Write-Host "Download and install posh-git..."
 		$currentFolder = $pwd
-		cd $pathToInstall
-
-		# Already exits?
-		if((Test-Path posh-git) -eq $true)
-		{
-			Write-Host "Already installed - updating..."
-			cd .\posh-git\
-			git pull -q
-		} 
-		# First time installation
-		else
-		{
-			git clone https://github.com/dahlbyk/posh-git.git -q
-			cd .\posh-git\
-		}
-		.\install.ps1	
+		PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
 		
 		cd $currentFolder
 
