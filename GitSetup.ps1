@@ -38,9 +38,6 @@ function CheckPowerShellVersion
 		Write-Error "You are not running PowerShell version 5+! Please upgrade."
 	}
 
-	if($PSVersionTable.PSVersion.Major -ge 7) {
-		Get-PackageProvider -Name "NuGet" | Install-PackageProvider -Verbose -Force
-	}
 	Import-PackageProvider NuGet -Force
 }
 
@@ -99,6 +96,7 @@ function DownloadGit
 Set-Alias g git        # Use Git commands but just typing 'g'
 Set-Alias ex explorer  # Open a File Explorer with 'ex .'
 
+Import-Module posh-git
 Import-Module posh-sshell
 Start-Service ssh-agent
 "@
@@ -228,6 +226,7 @@ function SetupPoshGit
 		$text = @"
 
 # Load Posh-git
+Import-Module posh-git
 Import-Module posh-sshell
 
 # Load SSH-agent with password
