@@ -136,7 +136,8 @@ function SetupSSH
 			New-item $sshPath -itemType directory
 			Set-itemProperty -Path $sshPath -Name Attributes -Value ([System.IO.FileAttributes]::Hidden)
 		}
-		ssh-keygen.exe -t rsa -b 4096 -f $sshKey	
+		ssh-keygen.exe -t rsa -b 4096 -f $sshKey
+		ssh-add -k $sshKey 	
 	}
 	catch
 	{
