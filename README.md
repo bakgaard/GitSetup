@@ -36,8 +36,7 @@ $Folderpath = ".\GitSetup" #Current location in a folder called "GitSetup"
 
 # Download data from he Git repository
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-Import-Module BitsTransfer
-Start-BitsTransfer -Source https://github.com/bakgaard/GitSetup/archive/master.zip -Destination "$Folderpath.zip"
+Invoke-WebRequest -URI https://github.com/bakgaard/GitSetup/archive/master.zip -OutFile "$Folderpath.zip"
 
 # Unzip the files
 Expand-Archive "$Folderpath.zip" -DestinationPath $Folderpath -Force
