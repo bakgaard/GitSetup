@@ -54,22 +54,14 @@ rmdir $Folderpath -Recurse -Force
 ```
 
 
-### Step 3 - Mergetool error
+### Step 3 - Fix mergetool error
 
 You will most likely encounter a merge tool error, which might be because you are missing ``msvcr110.dll``.
-Download and install the [Visual C++ Redistributable for Visual Studio 2012 Update 4](https://www.microsoft.com/en-us/download/confirmation.aspx?id=30679), or use Chocolatey to do it:
+Download and install the [Visual C++ Redistributable for Visual Studio 2013](https://www.microsoft.com/en-us/download/details.aspx?id=40784), or use Chocolatey to do it:
 
 ```powershell
-choco install vcredist2012
+choco install vcredist2013 -y
 ```
-
-
-
-## Optional
-
-* Change editor when making ``--amend`` messages using the alias ``git sublime`` and ``git notepad``.
-
-  Make sure the path in ``~/.gitconfig``'s line 34 and 35 are correct, or add your own favorite editor to it.
 
 
 
@@ -86,21 +78,6 @@ This happens, and I can't really find the root cause, but I have a work-around:
 * Open ``GitSetup.ps1``
 * Copy everything to a new document, and save it as ``setup.ps1``
 * Run ``setup.ps1 "Your name" "Your email"``
-
-
-### It ask if I have installed Sublime Text 3
-
-When installing Git, it will ask you which editor you prefer, and save that in your ``~/.gitconfig``.
-This is overwritten in Step 2, so you have to do something to switch to, for example, Notepad++.
-
-I have implemented an alias to switch to Notepad++ which you can run as so:
-```powershell
-git notepad #Will switch to Notepad++ (x64 folder)
-git sublime #Will switch to Sublime Text 3
-```
-
-If you use something else, have a look inside the ``~/.gitconfig`` file, and go to the ``[core]`` section.
-Here you can specify which editor to start up in the ``editor`` line.
 
 
 ## Git cheat sheet
