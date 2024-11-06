@@ -89,7 +89,6 @@ function DownloadGit
 	{
 		$text = @"
 `$env:path += ";" + (Get-Item "Env:ProgramFiles").Value + "\Git\bin"
-`$env:path += ";" + (Get-Item "Env:ProgramFiles").Value + "\Git\cmd"
 `$env:home = `$env:userprofile
 
 #Alias
@@ -107,7 +106,6 @@ Start-Service ssh-agent
 	{
 		$text = @"
 `$env:path += ";" + (Get-Item "Env:ProgramFiles").Value + "\Git\bin"
-`$env:path += ";" + (Get-Item "Env:ProgramFiles").Value + "\Git\cmd"
 `$env:path += ";" + (Get-Item "Env:ProgramFiles").Value + "\Git\usr\bin"
 `$env:home = `$env:userprofile
  
