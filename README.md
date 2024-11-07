@@ -40,6 +40,7 @@ It includes setup of Posh-git, P4Merge, and several shortcuts.
 ```powershell
 $YourName = "Anon McAnon" #Replace this value
 $YourEmail = "anon@mail.com" #Replace this value
+
 $Folderpath = ".\GitSetup" #Current location in a folder called "GitSetup"
 
 # Download data from he Git repository
